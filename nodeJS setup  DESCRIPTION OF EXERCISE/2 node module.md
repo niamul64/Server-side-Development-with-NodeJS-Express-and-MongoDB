@@ -11,7 +11,7 @@ index.js initially:
 2. in rectangle.js:
 <br>
 exports.perimeter = (x,y) =>(2*(x+y)),<br>
-exports.area : (x,y) => (x*y);<br>
+exports.area = (x,y) => (x*y);<br>
 
 <br><br>
 

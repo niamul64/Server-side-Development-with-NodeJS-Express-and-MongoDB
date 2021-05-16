@@ -1,7 +1,4 @@
-var rect ={ // var means bariable, here creating a object variable
-    preimeter: (x,y) => (2*(x+y)),
-    area: (x,y) => (x*y)
-};
+var rect = require('./rectangle.js');// 'rectangle.js' is in the same folder so used './'
 
 function solveRect(l,b){ // creating function to recive 2 sides of rectangle
     console.log("Solving for rectangle with l=" + l + "and b"+b); 
