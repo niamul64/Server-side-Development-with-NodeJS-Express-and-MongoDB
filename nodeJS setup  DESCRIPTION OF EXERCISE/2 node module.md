@@ -2,10 +2,10 @@
 1. create a file rectangle.js in same directory where package.json and index.js located
 
 index.js initially:
-<img width="200" src= "pic/Capture5.PNG"/>
+<img width="500" src= "pic/Capture5.PNG"/>
 
  package.json
-<img width="200" src= "pic/Capture2.PNG"/>
+<img width="500" src= "pic/Capture2.PNG"/>
 
 
 2. in rectangle.js:
