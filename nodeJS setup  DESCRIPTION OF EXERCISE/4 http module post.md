@@ -54,4 +54,74 @@ In the public folder, create a file named index.html and add the following code 
 Similarly create an aboutus.html file and add the following code to it:<img width="" src= "pic/Capture13.PNG"/><br>
 
 ### now in index.js, <br>
-Add file system core module and path core module in index.js
+Add "file system core module" and "path core module" in index.js
+<br> to show the html files as response
+<img width="" src= "pic/Capture15.PNG"/><br>
+ 
+### Now, insted of printing all log file to console log we will print only suficient information<br>
+<img width="" src= "pic/Capture16.PNG"/><br><br>
+
+now we will change the way we send response:(here we will only cover get request)
+<img width="" src= "pic/Capture17.PNG"/><br><br>
+
+### run the server by : npm start
+
+## now if we write : http://localhost:3000/about.html
+<img width="" src= "pic/Capture17.PNG"/><br><br>
+
+## code:
+const http = require('http');<br>
+<br>
+const fs = require('fs');<br>
+const path = require('path');<br>
+<br>
+const hostname = 'localhost';<br>
+const port = 3000;<br>
+
+<br><br>
+const server = http.createServer((req, res) => {<br>
+  console.log('Request for ' + req.url + ' by method ' + req.method);<br>
+<br>
+  if (req.method == 'GET') {<br>
+    var fileUrl;<br>
+    if (req.url == '/') fileUrl = '/index.html';<br>
+    else fileUrl = req.url;<br>
+<br>
+    var filePath = path.resolve('./public'+fileUrl);<br>
+    const fileExt = path.extname(filePath);<br>
+    if (fileExt == '.html') {<br>
+      fs.exists(filePath, (exists) => {<br>
+        if (!exists) {<br>
+          res.statusCode = 404;<br>
+          res.setHeader('Content-Type', 'text/html');<br>
+          res.end('<html><body><h1>Error 404: ' + fileUrl + <br>
+                      ' not found</h1></body></html>');<br>
+          return;<br>
+        }<br>
+        res.statusCode = 200;<br>
+        res.setHeader('Content-Type', 'text/html');<br>
+        fs.createReadStream(filePath).pipe(res);<br>
+      });<br>
+    }<br>
+    else {<br>
+      res.statusCode = 404;<br>
+      res.setHeader('Content-Type', 'text/html');<br>
+      res.end('<html><body><h1>Error 404: ' + fileUrl + <br>
+              ' not a HTML file</h1></body></html>');<br>
+    }<br>
+  }<br>
+  else {<br>
+      res.statusCode = 404;<br>
+      res.setHeader('Content-Type', 'text/html');<br>
+      res.end('<html><body><h1>Error 404: ' + req.method + <br>
+              ' not supported</h1></body></html>');<br>
+  }<br>
+})
+<br>
+<br>
+server.listen(port, hostname, () => {<br>
+  console.log(`Server running at http://${hostname}:${port}/`);<br>
+<br>
+<br>
+
+});<br>
