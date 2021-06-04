@@ -67,7 +67,7 @@ now we will change the way we send response:(here we will only cover get request
 ### run the server by : npm start
 
 ## now if we write : http://localhost:3000/about.html
-<img width="" src= "pic/Capture17.PNG"/><br><br>
+<img width="" src= "pic/Capture18.PNG"/><br><br>
 
 ## code:
 const http = require('http');<br>
